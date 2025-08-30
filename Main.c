@@ -38,6 +38,12 @@ int main(){
                 "Number = The choosen game is started\n\n");
             write(1, buff, strlen(buff));
         }
+        else if(command == 'l'){
+            sprintf(buff, "Game List :\n"
+                "1 -Flappy (1.0)\n\n"
+            );
+            write(1, buff, strlen(buff));
+        }
         //Flappy
         else if(command == '1'){
             execlp("./Flappy", "./Flappy", NULL);

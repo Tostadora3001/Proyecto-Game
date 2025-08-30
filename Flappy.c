@@ -14,13 +14,15 @@
 #define Main_Lenght 150
 #define Main_High 33
 #define Gravity 1                   //Vertical
-#define Inicial_Pipe_Velocity -5    //Horizontal
-#define Time_Frame_seconds 0                    //Seconds
+#define Inicial_Pipe_Velocity 1    //Horizontal
+#define Time_Frame_seconds 0                   //Seconds
 #define Time_Frame_nanoseconds 300000000        //Nanoseconds
+#define TIME_INCREASE_VELOCITY 250
+#define MAX_PIPE_VELOCITY 5
 
 //Pipes Parameters
 #define NUM_PIPES 5
-#define DISTANCE_B_PIPES 30
+#define DISTANCE_B_PIPES 40
 
 //Flappy Parameters
 #define Flappy_starting_x 3
@@ -29,6 +31,7 @@
 
 int score = 0;
 int Max_score = 0;
+int Pipe_Velocity = Inicial_Pipe_Velocity;
 
 void Initial_Setting(struct Matrix *MainMatrix, struct Object *Flappy_Objt, struct Object *Pipes){
     clearMatrix(MainMatrix);
@@ -48,8 +51,8 @@ void Initial_Setting(struct Matrix *MainMatrix, struct Object *Flappy_Objt, stru
     clearTerminal();
     print_M(MainMatrix, PERIMETER);
 
-    char Num_display[128];
-    sprintf(Num_display, "SCORE : %d\nMAX SCORE : %d\n", score, Max_score);
+    char Num_display[256];
+    sprintf(Num_display, "SCORE : %d\nMAX SCORE : %d\nSpace -> Jump / r -> Restart / q -> Exit\n", score, Max_score);
     write(1, Num_display, strlen(Num_display));
 }
 
@@ -157,11 +160,12 @@ int main(){
         //Logical Operations
 
         if(running > 0){
+            if(score % TIME_INCREASE_VELOCITY == 0 && Pipe_Velocity <= MAX_PIPE_VELOCITY) ++Pipe_Velocity;
             clearMatrix(&MainMatrix);
             //Pipes movement
             //Only draw if the x is inside the matrix
             for(int i = 0; i < NUM_PIPES; ++i){
-                Pipes[i].x -= 1;
+                Pipes[i].x -= Pipe_Velocity;
 
                 if(Pipes[i].x < 0) Pipes[i].x = Main_Lenght;
                 else if((Pipes[i].x + Pipes[i].draw.m) <= Main_Lenght){
@@ -186,12 +190,11 @@ int main(){
             }
             
             //Print the Matrix
-            if(Score % 250 == 0) clearTerminal();
             Move_Terminal_Cursor_Beginning();
             print_M(&MainMatrix, PERIMETER);
 
-            char Num_display[128];
-            sprintf(Num_display, "SCORE : %d\nMAX SCORE : %d\n", score, Max_score);
+            char Num_display[256];
+            sprintf(Num_display, "SCORE : %d\nMAX SCORE : %d\n\n", score, Max_score);
             write(1, Num_display, strlen(Num_display));
 
             if(nanosleep(&ts, NULL) < 0) error_exit("Error(Main) nanosleep failure\n", 2);
