@@ -1,0 +1,20 @@
+Error: GAME_P should not be executed directly
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix
+Error:(insert) draw is bigger than the Main matrix

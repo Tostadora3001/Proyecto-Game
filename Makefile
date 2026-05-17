@@ -1,9 +1,13 @@
-all: GAME_P Flappy
+all: GAME_P bin/Flappy
 
-GAME_P: Main.c game.c
-	gcc Main.c game.c -o GAME_P
+GAME_P: Main.c src/game/game.c
+	gcc Main.c src/game/game.c -o GAME_P -Wall -Werror
 
-Flappy: Flappy.c game.c
-	gcc Flappy.c game.c -o Flappy
+bin/Flappy: src/Flappy/Flappy.c src/game/game.c src/Music/Music.c
+	gcc src/Flappy/Flappy.c src/game/game.c src/Music/Music.c -o bin/Flappy -Wall -Werror
 
-clean: rm -f GAME_P Flappy
+clean:
+	rm -f GAME_P bin/*
+
+ultraclean: 
+	rm -f GAME_P bin/*
